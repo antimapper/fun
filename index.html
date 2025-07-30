@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Try Something New - Day Out Ideas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header p {
+            color: #6c757d;
+            font-size: 1.1em;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        
+        .stats span {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .add-form {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .add-form h2 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        
+        .add-form p {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .submit-btn {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .submit-btn:hover {
+            background: #333;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .ideas-section {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .ideas-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .ideas-header h2 {
+            font-size: 1.4em;
+        }
+        
+        .sort-info {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        .idea-card {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: all 0.2s;
+            position: relative;
+        }
+        
+        .idea-card:hover {
+            border-color: #dee2e6;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .idea-header {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .idea-emoji {
+            font-size: 2em;
+            line-height: 1;
+        }
+        
+        .idea-content {
+            flex: 1;
+        }
+        
+        .idea-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+        
+        .idea-description {
+            color: #6c757d;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .vote-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .vote-count {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .vote-btn {
+            background: white;
+            border: 2px solid #1a1a1a;
+            color: #1a1a1a;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .vote-btn:hover {
+            background: #1a1a1a;
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        .vote-btn.voted {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6c757d;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6c757d;
+        }
+        
+        .footer h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗺️✨🎭 Let's Try Something New</h1>
+            <p>Let's do something new together! This page will help us longlist ideas and find the ones that most people are interested in. Vote for ideas that you would attend, and feel free to add new ideas.</p>
+            <div class="stats">
+                <div><span id="ideaCount">3</span> ideas</div>
+                <div>•</div>
+                <div><span id="totalVotes">0</span> votes</div>
+            </div>
+        </div>
+        
+        <div class="add-form">
+            <h2>💡 Got an Idea?</h2>
+            <p>Share something for the group to try!</p>
+            <form id="addIdeaForm">
+                <div class="form-group">
+                    <label for="ideaName">Idea Name *</label>
+                    <input type="text" id="ideaName" placeholder="e.g., Escape Room Marathon" required>
+                </div>
+                <div class="form-group">
+                    <label for="ideaDescription">Why Should We Try This? *</label>
+                    <textarea id="ideaDescription" placeholder="Tell us what makes this idea exciting..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <span>🚀</span>
+                    <span>Add Idea</span>
+                </button>
+            </form>
+        </div>
+        
+        <div class="ideas-section">
+            <div class="ideas-header">
+                <h2>🎯 Choose Your Ideas</h2>
+                <div class="sort-info">Sorted by popularity</div>
+            </div>
+            <div id="ideasList"></div>
+        </div>
+        
+        <div class="footer">
+            <h3>🌟🎉🚀 Ready to Try Something New?</h3>
+            <p>Let's make memories together! Vote for your favorites or add something completely new to the mix.</p>
+        </div>
+    </div>
+
+    <script>
+        // Initialize with default ideas
+        let ideas = [
+            {
+                id: 1,
+                emoji: '🏔️',
+                title: 'Seven Sisters Cliff Walk',
+                description: 'A day trip to the famous cliff walk on the south of England. Beautiful white cliffs with stunning coastal views and plenty of photo opportunities along the way.',
+                votes: 0,
+                voters: []
+            },
+            {
+                id: 2,
+                emoji: '👁️',
+                title: 'Blind for a Day',
+                description: 'Spend a whole day wearing an eye mask and hang out doing non-visual stuff. Experience the world differently through touch, sound, and taste - could be really eye-opening!',
+                votes: 0,
+                voters: []
+            },
+            {
+                id: 3,
+                emoji: '🥐',
+                title: 'Croissant Tour of East London',
+                description: "Let's walk around and try some of the best pastry in town! A delicious journey through East London's finest bakeries and cafes.",
+                votes: 0,
+                voters: []
+            }
+        ];
+
+        // Get user ID (simple implementation using localStorage)
+        let userId = localStorage.getItem('userId');
+        if (!userId) {
+            userId = 'user_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('userId', userId);
+        }
+
+        // Load saved data
+        const savedIdeas = localStorage.getItem('dayOutIdeas');
+        if (savedIdeas) {
+            ideas = JSON.parse(savedIdeas);
+        }
+
+        function saveData() {
+            localStorage.setItem('dayOutIdeas', JSON.stringify(ideas));
+        }
+
+        function updateStats() {
+            const totalVotes = ideas.reduce((sum, idea) => sum + idea.votes, 0);
+            document.getElementById('ideaCount').textContent = ideas.length;
+            document.getElementById('totalVotes').textContent = totalVotes;
+        }
+
+        function renderIdeas() {
+            const ideasList = document.getElementById('ideasList');
+            
+            if (ideas.length === 0) {
+                ideasList.innerHTML = `
+                    <div class="empty-state">
+                        <p>No ideas yet! Be the first to add one above.</p>
+                    </div>
+                `;
+                updateStats();
+                return;
+            }
+            
+            // Sort by votes
+            const sortedIdeas = [...ideas].sort((a, b) => b.votes - a.votes);
+            
+            ideasList.innerHTML = sortedIdeas.map(idea => {
+                const hasVoted = idea.voters.includes(userId);
+                return `
+                    <div class="idea-card">
+                        <div class="idea-header">
+                            <div class="idea-emoji">${idea.emoji}</div>
+                            <div class="idea-content">
+                                <h3 class="idea-title">${idea.title}</h3>
+                                <p class="idea-description">${idea.description}</p>
+                                <div class="vote-section">
+                                    <span class="vote-count">${idea.votes} ${idea.votes === 1 ? 'vote' : 'votes'}</span>
+                                    <button class="vote-btn ${hasVoted ? 'voted' : ''}" 
+                                            onclick="toggleVote(${idea.id})"
+                                            ${hasVoted ? 'disabled' : ''}>
+                                        <span>👍</span>
+                                        <span>${hasVoted ? 'Voted' : 'Vote Now'}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            updateStats();
+        }
+
+        function toggleVote(ideaId) {
+            const idea = ideas.find(i => i.id === ideaId);
+            if (!idea) return;
+            
+            if (!idea.voters.includes(userId)) {
+                idea.votes++;
+                idea.voters.push(userId);
+                saveData();
+                renderIdeas();
+            }
+        }
+
+        // Random emoji selector for new ideas
+        const emojis = ['🎮', '🎨', '🏃', '🍕', '🎭', '🎬', '🎪', '🎯', '🎲', '🎸', '🏖️', '🌳', '🚴', '🧗', '🏊', '⛺', '🎿', '🏸', '🎳', '🎤'];
+        
+        document.getElementById('addIdeaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('ideaName').value.trim();
+            const description = document.getElementById('ideaDescription').value.trim();
+            
+            if (!title || !description) return;
+            
+            const newIdea = {
+                id: Date.now(),
+                emoji: emojis[Math.floor(Math.random() * emojis.length)],
+                title: title,
+                description: description,
+                votes: 0,
+                voters: []
+            };
+            
+            ideas.push(newIdea);
+            saveData();
+            
+            // Clear form
+            document.getElementById('ideaName').value = '';
+            document.getElementById('ideaDescription').value = '';
+            
+            renderIdeas();
+            
+            // Scroll to the new idea
+            setTimeout(() => {
+                document.querySelector('.ideas-section').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        });
+
+        // Initial render
+        renderIdeas();
+    </script>
+</body>
+</html>
